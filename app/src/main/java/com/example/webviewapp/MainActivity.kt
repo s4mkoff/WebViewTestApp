@@ -1,24 +1,15 @@
 package com.example.webviewapp
 
-import android.content.ContentValues.TAG
 import android.content.Context
-import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 
 
 class MainActivity : AppCompatActivity() {
-
-    var pref: SharedPreferences? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        pref = getSharedPreferences("LAUNCHED", Context.MODE_PRIVATE)
-        val firstlauch = pref?.getBoolean("LAUNCHED", true)
-        Log.d(TAG, "loadData completed, ${firstlauch}")
-        if (firstlauch == true) {
+        if (getSharedPreferences("app", Context.MODE_PRIVATE).getBoolean("Boolean", false) == false) {
             supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.fullcreen_holder, start_fragment())
@@ -27,6 +18,7 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.fullcreen_holder, webview_fragment())
+                .commit()
         }
     }
 }

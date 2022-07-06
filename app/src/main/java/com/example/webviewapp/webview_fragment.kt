@@ -1,16 +1,18 @@
 package com.example.webviewapp
 
-import android.annotation.SuppressLint
 import android.content.ContentValues.TAG
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.fragment.app.Fragment
 
 
 class webview_fragment : Fragment(){
@@ -31,24 +33,15 @@ class webview_fragment : Fragment(){
             .onBackPressedDispatcher
             .addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
-                    Log.d(TAG, "Fragment back pressed invoked")
-                    // Do custom work here
+                    Log.d(TAG, "Back button pressed")
                     if (mWebView.canGoBack()){
                         mWebView.goBack()
                     } else {
                         requireActivity().finishAndRemoveTask()
-                        /*if (isEnabled) {
-                            isEnabled = false
-                            requireActivity().onBackPressed()
-                        }*/
                     }
-                    // if you want onBackPressed() to be called as normal afterwards
-
                 }
             }
             )
         return view
     }
-
-
 }

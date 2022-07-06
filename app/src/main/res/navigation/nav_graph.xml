@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_graph">
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainActivity">
 
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.example.webviewapp.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" >
+        <argument
+            android:name="succLaunched"
+            app:argType="boolean"
+            android:defaultValue="false" />
+    </activity>
+    <fragment
+        android:id="@+id/start_fragment"
+        android:name="com.example.webviewapp.start_fragment"
+        android:label="layout_start_fragment"
+        tools:layout="@layout/layout_start_fragment" >
+        <action
+            android:id="@+id/action_start_fragment_to_mainActivity3"
+            app:destination="@id/mainActivity" />
+        <argument
+            android:name="succLaunched"
+            app:argType="boolean"
+            android:defaultValue="false" />
+    </fragment>
 </navigation>
